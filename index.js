@@ -1,7 +1,12 @@
 const express = require('express')
+const cors = require('cors')
+const logger = require('./logger.Middleware.js')
+
 const app = express()
 
 app.use(express.json())
+
+app.use(logger)
 
 let notes = [
   {
@@ -103,6 +108,12 @@ app.put('/api/notes/:id', (request, response) => {
   } else {
     response.status(404).end()
   }
+})
+
+app.use((request, response) => {
+  response.status(404).json({
+    error: 'Not found'
+  })
 })
 
 const PORT = 3001
