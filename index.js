@@ -8,6 +8,8 @@ app.use(express.json())
 
 app.use(logger)
 
+app.use(cors())
+
 let notes = [
   {
     id: 1,
